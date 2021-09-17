@@ -40,4 +40,5 @@
     "target": "ES2021",
     //"useDefineForClassFields": true,
 ```
-
+- Add HTMLElementTagNameMap declaration to the  
+`declare global { interface HTMLElementTagNameMap { "my-counter": Counter}}`
