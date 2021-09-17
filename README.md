@@ -1,5 +1,14 @@
 # Lit Tools for Making Web Applications (paola18)
 
+Accompanying videos explaining the whole story:
+- [Reactive Web Component Programming Lit Element 01 Counter Project Setup with ViteJS](https://youtu.be/hs0oHgLIFLc)
+- [Lit Element Counter Sample Project with ViteJS - 02 GitHub Repo from Local Disk](https://youtu.be/wthWv2Q8Rcg)
+- [Lit Element Counter Sample with Vitejs - 03 TypeScriptified so Deployed Successfully](https://youtu.be/aIxCrPzieP4)
+- [Lit Element TypeScript Decorators for Counter Sample with Vitejs - 04 Final Deployment on Azure](https://youtu.be/FK4uhP4euuE)
+
+Lit Element Counter Sample App on [Azure](https://lively-field-057f5c603.azurestaticapps.net/)
+
+
 ## Part 1 - Project Setup with Vite and Deployment
 - **npm init vite**
 - **npm install**
