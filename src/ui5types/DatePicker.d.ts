@@ -87,7 +87,7 @@ export default DatePicker
  * @tagname ui5-date-picker
  * @public
  */
-declare class DatePicker {
+declare class DatePicker extends HTMLElement {
     static get metadata(): {
         tag: string;
         altTag: string;

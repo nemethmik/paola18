@@ -32,7 +32,7 @@ export default Popup
  * @extends sap.ui.webcomponents.base.UI5Element
  * @public
  */
-declare class Popup {
+declare class Popup extends HTMLElement{
     static get metadata(): {
         managedSlots: boolean;
         slots: {

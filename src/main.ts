@@ -4,11 +4,12 @@ import {customElement,property} from "lit/decorators.js"
 import "./my-counter"
 import "./my-ui5demo"
 import {TUI5DemoEventPayload} from "./my-ui5demo"
+import "./my-ui5products"
 
 const app = document.querySelector<HTMLDivElement>("#app")!
 render(html`<my-app page="CounterDemo"></my-app>`,app)  
 
-type TPageType = "CounterDemo" | "UI5Demo"
+type TPageType = "CounterDemo" | "UI5Demo" | "UI5Products"
 @customElement("my-app")
 class App extends LitElement {
   @property() page:TPageType = "CounterDemo"
@@ -33,6 +34,7 @@ class App extends LitElement {
       <h1>Hello Vite Web Components with Lit!</h1>
       <button @click=${():void => {this.page = "CounterDemo"}}>Counter</button>
       <button @click=${():void => {this.page ="UI5Demo"}}>UI5 Demo</button>
+      <button @click=${():void => {this.page ="UI5Products"}}>UI5 Products</button>
       <p>
         ${this.page == "CounterDemo" ? this.myCounterPage : ""}
         ${this.page == "UI5Demo" ? html`
@@ -43,6 +45,7 @@ class App extends LitElement {
             </div>
             <p slot="hellodialog">Hello World!</p>
           </my-ui5demo>` : ""}
+          ${this.page == "UI5Products" ? html`<my-ui5products @populate=${({detail}):void=>alert(detail + " rows loaded")}></my-ui5products>` : ""}  
       </p>
       <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
     `  

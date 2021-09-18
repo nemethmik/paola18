@@ -39,7 +39,7 @@ export default Switch
  * @public
  * @since 0.8.0
  */
-declare class Switch {
+declare class Switch extends HTMLElement {
     static get metadata(): {
         tag: string;
         languageAware: boolean;
@@ -119,7 +119,7 @@ declare class Switch {
     get graphical(): boolean;
     get _textOn(): any;
     get _textOff(): any;
-    get tabIndex(): string;
+    //get tabIndex(): string;
     get classes(): {
         main: {
             "ui5-switch-desktop": any;
