@@ -411,7 +411,7 @@ declare class DatePicker {
      * @type { Date }
      * @public
      */
-    public readonly get dateValue(): Date;
+    public /*readonly*/ get dateValue(): Date;
     get dateValueUTC(): any;
     get styles(): {
         main: {

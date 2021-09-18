@@ -6,6 +6,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "fix": "eslint src --fix",
+    "servor": "npx servor dist index.html 8080 --browse --reload",
     "ui5:dialog": "tsc ./node_modules/@ui5/webcomponents/src/Dialog.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:datepicker": "tsc ./node_modules/@ui5/webcomponents/src/DatePicker.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:switch": "tsc ./node_modules/@ui5/webcomponents/src/Switch.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
