@@ -5,7 +5,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "fix": "eslint src --fix"
+    "fix": "eslint src --fix",
+    "ui5:dialog": "tsc ./node_modules/@ui5/webcomponents/src/Dialog.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
+    "ui5:datepicker": "tsc ./node_modules/@ui5/webcomponents/src/DatePicker.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
+    "ui5:switch": "tsc ./node_modules/@ui5/webcomponents/src/Switch.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
+    "ui5:popup": "tsc ./node_modules/@ui5/webcomponents/src/Popup.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -15,6 +19,7 @@
     "vite": "^2.5.4"
   },
   "dependencies": {
+    "@ui5/webcomponents": "^1.0.0-rc.15",
     "lit": "^2.0.0-rc.4"
   }
 }

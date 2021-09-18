@@ -151,3 +151,15 @@ myCounter.addEventListener(TCounterEventName.decrement,((ev:CustomEvent)=> {
 }) as EventListener)
 
 ```
+
+## Part 4 SAP UI5 Demo
+- I have created d.ts declarations files with a series of commands like:
+`"ui5:dialog": "tsc ./node_modules/@ui5/webcomponents/src/Dialog.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",` and I added them to the *package.json*
+
+- This https://medium.com/codex/how-to-share-constants-in-typescript-project-8f76a2e40352 is a very useful about creating values and string key types.
+
+
+- Here is Petar Skelin's blog post https://blogs.sap.com/2021/05/28/getting-started-with-ui5-web-components-in-2021/ 
+- Another SAP blogpost https://blogs.sap.com/2020/12/30/using-ui5-web-components-without-any-framework/ 
+  - https://github.com/christianp86/ui5-webcomponents-pure-js/tree/main/blog-series/part-1/ui5-webcomponents-wo-frk
+
