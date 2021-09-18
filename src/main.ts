@@ -13,7 +13,7 @@ function onCounterEvent(e:CustomEvent):void {
   window.alert("Counter Event " + e.detail)
 }
 render(html`
-  <h1>Hello Vite Web Components with TypeScript Decorators like @property!</h1>
+  <h1>Hello Vite Web Components with TypeScript and Lit!</h1>
   <p>
     <my-counter @decrement=${onCounterEvent} @increment=${onCounterEvent} count=5></my-counter>
   </p>
