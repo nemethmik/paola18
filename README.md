@@ -51,3 +51,103 @@ Lit Element Counter Sample App on [Azure](https://lively-field-057f5c603.azurest
 ```
 - Add HTMLElementTagNameMap declaration to the  
 `declare global { interface HTMLElementTagNameMap { "my-counter": Counter}}`
+
+## Part 3 Event Handler
+In this episode the capability of lit-plugin is demonstrated.
+- Add an event dispatcher to the Counter class
+    - Start typing @ in the html template and show how nicely lit-plugin immediately recognized that the my-counter component is possibly dispatching an increment custom event.
+    - Change the name to "IncrCount" in Counter and see if lit-plugin recognizes the new value.
+    - Implement an inline fat-arrow event handler
+- Now see if @event or attributes/properties work in html template editing when the component is defined in a separate module
+    - Create my-counter.ts and move all the Counter class there
+    - Test, if typing @ gives a list of event; it is not expected 
+        - Test if attributes/properties are supported by lit-plugin since it detects @property decorators.
+    - Show the documentation of lit-plugin where it mentiones JSDoc @fires in the no-unknown-event section
+
+### my-counter:
+```typescript
+import { LitElement, html, TemplateResult} from "lit"
+import {customElement,property} from "lit/decorators.js"
+// Dispatched events: increment, decrement
+export const TCounterEventName = {increment: "increment", decrement: "decrement"} as const
+export type TCounterEventPayload = {detail:number}
+/**
+ * @fires Counter#increment
+ * @fires Counter#decrement
+ */
+@customElement("my-counter")
+class Counter extends LitElement {
+  @property({type:Number}) count = 0
+  setCount = (count:number):void => {
+    this.count = count
+  }
+  render():TemplateResult {
+    return html`
+      <h1>Lit Element - Counter</h1>
+      <h2>You clicked ${this.count} times</h2>
+      <button type="button" @click=${this.decrement}>Decrement</button>
+      <button type="button" @click=${this.increment}>Increment</button>
+    `
+  }
+  /**
+   * @event Counter#increment
+   */
+  increment():void {
+    this.setCount(this.count + 1)
+    const detail:TCounterEventPayload = {detail:this.count}
+    this.dispatchEvent(new CustomEvent(TCounterEventName.increment,detail))
+  }
+  /**
+   * @event Counter#decrement
+   */
+  decrement():void {
+    this.setCount(this.count - 1)
+    const detail:TCounterEventPayload = {detail:this.count}
+    this.dispatchEvent(new CustomEvent(TCounterEventName.decrement,detail))
+  }
+}
+declare global { interface HTMLElementTagNameMap { "my-counter": Counter}}
+```
+### main.ts
+```typescript
+//import "./style.css"
+import { html, render } from "lit"
+import "./my-counter"
+import /* type */ {TCounterEventName, TCounterEventPayload} from "./my-counter"
+
+const app = document.querySelector<HTMLDivElement>("#app")!
+export const mc = document.querySelector("my-counter")!
+
+//Counter Event Handlers
+function onIncrement({detail}:TCounterEventPayload):void {
+  console.log("onIncrement",detail)
+}
+function onDecrement({detail}:TCounterEventPayload):void {
+  console.log("onDecrement",detail)
+}
+const myConterIncrDecrEventListener = (ev:CustomEvent):void => {
+  console.log("Event Listener",ev)
+}
+/**
+ * @listens Counter#decrement
+ * @listens Counter#increment
+ */
+function onCounterEvent(ev:CustomEvent):void {
+  console.log("onCounterEvent",ev)
+}
+
+render(html`
+  <h1>Hello Vite Web Components with TypeScript Decorators like @property!</h1>
+  <p>
+    <!-- my-counter @decrement=${onDecrement} @increment=${onIncrement} count=5></my-counter -->
+    <my-counter @decrement=${async ({detail}):Promise<void> => await alert(`Decremented to ${detail}`)} @increment=${({detail}):void=>alert("inremented to " + detail)} count=5></my-counter>
+  </p>
+  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
+`,app)
+const myCounter = document.querySelector("my-counter")! 
+myCounter.addEventListener(TCounterEventName.increment,myConterIncrDecrEventListener as EventListener)
+myCounter.addEventListener(TCounterEventName.decrement,((ev:CustomEvent)=> {
+  console.log("Event Listener",ev)
+}) as EventListener)
+
+```
