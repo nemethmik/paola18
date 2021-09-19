@@ -8,13 +8,15 @@
     "fix": "eslint src --fix",
     "servor": "npx servor dist index.html 8080 --browse --reload",
     "ui5:dialog": "tsc ./node_modules/@ui5/webcomponents/src/Dialog.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
+    "ui5:checkbox": "tsc ./node_modules/@ui5/webcomponents/src/CheckBox.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:datepicker": "tsc ./node_modules/@ui5/webcomponents/src/DatePicker.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:switch": "tsc ./node_modules/@ui5/webcomponents/src/Switch.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:popup": "tsc ./node_modules/@ui5/webcomponents/src/Popup.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:table": "tsc ./node_modules/@ui5/webcomponents/src/Table.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:tablerow": "tsc ./node_modules/@ui5/webcomponents/src/TableRow.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:tablecolumn": "tsc ./node_modules/@ui5/webcomponents/src/TableColumn.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
-    "ui5:tablecell": "tsc ./node_modules/@ui5/webcomponents/src/TableCell.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types"
+    "ui5:tablecell": "tsc ./node_modules/@ui5/webcomponents/src/TableCell.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
+    "ui5:busyindicator": "tsc ./node_modules/@ui5/webcomponents/src/BusyIndicator.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.1",

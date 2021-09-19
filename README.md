@@ -158,11 +158,14 @@ myCounter.addEventListener(TCounterEventName.decrement,((ev:CustomEvent)=> {
 ## Part 4 SAP UI5 Demo
 - I have created d.ts declarations files with a series of commands like:
 `"ui5:dialog": "tsc ./node_modules/@ui5/webcomponents/src/Dialog.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",` and I added them to the *package.json*
+But, then I edited some of them significantly, *BusyIndicator*, for example was the most notable.
 
 - This https://medium.com/codex/how-to-share-constants-in-typescript-project-8f76a2e40352 is a very useful about creating values and string key types.
 
+- https://lit.dev/playground/ is an excellent place tho check out the number of decent examples.
+This is a treasury to copy-paste from.
 
-- Here is Petar Skelin's blog post https://blogs.sap.com/2021/05/28/getting-started-with-ui5-web-components-in-2021/ 
-- Another SAP blogpost https://blogs.sap.com/2020/12/30/using-ui5-web-components-without-any-framework/ 
-  - https://github.com/christianp86/ui5-webcomponents-pure-js/tree/main/blog-series/part-1/ui5-webcomponents-wo-frk
+- Here is Petar Skelin's blog post https://blogs.sap.com/2021/05/28/getting-started-with-ui5-web-components-in-2021/ where he recommends Vite and explains why there is no CDN distribution.
 
+
+- This SAP blogpost https://blogs.sap.com/2020/12/30/using-ui5-web-components-without-any-framework/  with https://github.com/christianp86/ui5-webcomponents-pure-js/tree/main/blog-series/part-1/ui5-webcomponents-wo-frk was the starting point for my ui5products demo page. I converted it to a reactive implementation and I have extended significantly to experiment with the behavior of the Table component.
