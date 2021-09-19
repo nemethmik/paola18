@@ -1,10 +1,12 @@
 //import "./style.css"
 import { html, render, LitElement, TemplateResult } from "lit"
-import {customElement,property} from "lit/decorators.js"
+import {customElement,property,query} from "lit/decorators.js"
 import "./my-counter"
 import "./my-ui5demo"
 import {TUI5DemoEventPayload} from "./my-ui5demo"
 import "./my-ui5products"
+import "@ui5/webcomponents/dist/Toast.js"
+import UI5Toast from "./ui5types/Toast"
 
 const app = document.querySelector<HTMLDivElement>("#app")!
 render(html`<my-app page="UI5Products"></my-app>`,app)  
@@ -14,6 +16,7 @@ type TPageType = "CounterDemo" | "UI5Demo" | "UI5Products"
 class App extends LitElement {
   @property() page:TPageType = "CounterDemo"
   @property({type:Number}) counter = 99
+  @query("ui5-toast",true) ui5toast!: UI5Toast
   myCounterPage():TemplateResult { return html`
     <my-counter 
       @increment=${this.onCounterEvent} 
@@ -29,7 +32,8 @@ class App extends LitElement {
    */
   ui5DemoListener(e:CustomEvent):void {
     const payload:TUI5DemoEventPayload = e.detail
-    alert(`UI5 Demo Event ${e.type} ${JSON.stringify(payload)}`)
+    //alert(`UI5 Demo Event ${e.type} ${JSON.stringify(payload)}`)
+    this.toast(`UI5 Demo Event ${e.type} ${JSON.stringify(payload)}`)
   }
   render(): TemplateResult {
     return html`
@@ -48,9 +52,11 @@ class App extends LitElement {
             </div>
             <p slot="hellodialog">Hello World!</p>
           </my-ui5demo>` : ""}
-          ${this.page === "UI5Products" ? html`<my-ui5products @populate=${({detail}):void=>alert(detail + " rows loaded")}></my-ui5products>` : ""}  
+          ${this.page === "UI5Products" ? html`<my-ui5products 
+            @populate=${({detail}):void=>this.toast(detail + " rows loaded")}></my-ui5products>` : ""}  
       </p>
-      <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
+      <ui5-toast>Basic Toast</ui5-toast>
+      <a href="https://github.com/nemethmik/paola18" target="_blank">Paola18 Documentation</a>
     `  
   }
   /**
@@ -60,8 +66,13 @@ class App extends LitElement {
   async onCounterEvent(e:CustomEvent):Promise<void> {
     this.counter = isNaN(e.detail) ? -9999 : e.detail 
     //See https://lit.dev/docs/components/events/ why the need for this 0 timeout await :)
-    await new Promise((r) => setTimeout(r, 0))
-    window.alert(`Counter Event ${e.type} to ${e.detail}`)
-  }  
+    //await new Promise((r) => setTimeout(r, 0)) //This is required only before alert()
+    //window.alert(`Counter Event ${e.type} to ${e.detail}`)
+    this.toast(`Counter Event ${e.type} to ${e.detail}`)
+  }
+  toast(message:string):void {
+    this.ui5toast.innerText = message
+    this.ui5toast.show()
+  }
 }
 declare global { interface HTMLElementTagNameMap { "my-app": App}}

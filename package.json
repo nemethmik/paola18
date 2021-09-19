@@ -16,7 +16,8 @@
     "ui5:tablerow": "tsc ./node_modules/@ui5/webcomponents/src/TableRow.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:tablecolumn": "tsc ./node_modules/@ui5/webcomponents/src/TableColumn.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
     "ui5:tablecell": "tsc ./node_modules/@ui5/webcomponents/src/TableCell.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
-    "ui5:busyindicator": "tsc ./node_modules/@ui5/webcomponents/src/BusyIndicator.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types"
+    "ui5:busyindicator": "tsc ./node_modules/@ui5/webcomponents/src/BusyIndicator.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types",
+    "ui5:toast": "tsc ./node_modules/@ui5/webcomponents/src/Toast.js --declaration --allowJs --emitDeclarationOnly --outDir ./src/ui5types"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.1",
