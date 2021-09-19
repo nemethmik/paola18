@@ -17,10 +17,12 @@ class Counter extends LitElement {
    render():TemplateResult {
     const { count } = this
     return html`
-      <h1>Lit Element - Counter</h1>
-      <h2>You clicked ${count} times</h2>
-      <button type="button" @click=${():void => {
+      <slot></slot>
+      <h2>${count}</h2>
+      <button type="button" @click=${async ():Promise<void> => {
             this.setCount(count - 1)
+            //See https://lit.dev/docs/components/events/ why the need for this 0 timeout await :)
+            await new Promise((r) => setTimeout(r, 0))
             this.dispatchEvent(new CustomEvent("decrement",{detail:this.count}))
           }}>Decrement</button>
       <button type="button" @click=${this.increment}>Increment</button>
@@ -29,9 +31,11 @@ class Counter extends LitElement {
   /**
    * @event Counter#increment
    */
-  increment():void {
+  async increment():Promise<void> {
     console.log("increment button clicked")
     this.setCount(this.count + 1)
+    //See https://lit.dev/docs/components/events/ why the need for this 0 timeout await :)
+    await new Promise((r) => setTimeout(r, 0))
     this.dispatchEvent(new CustomEvent("increment",{detail:this.count}))
   }
 }

@@ -16,7 +16,8 @@ class ChristianP86 extends LitElement {
     render():TemplateResult {
         return html`
             <div>
-                <ui5-table id=${ChristianP86.PRODUCTSTABLE} no-data-text="No Data" show-no-data>
+                <ui5-table id=${ChristianP86.PRODUCTSTABLE} no-data-text="No Data" show-no-data
+                    mode="SingleSelect" .stickyColumnHeader=${true}>
                     <ui5-table-column slot="columns" style="width: 12rem">
                         <span style="line-height: 1.4rem">Product</span>
                     </ui5-table-column>
@@ -58,6 +59,8 @@ class ChristianP86 extends LitElement {
             }
             table.appendChild(tableRow)
         })
+        //See https://lit.dev/docs/components/events/ why the need for this 0 timeout await :)
+        await new Promise((r) => setTimeout(r, 0))
         this.dispatchEvent(new CustomEvent("populate",{detail:products.length}))
     }
     async clearData():Promise<void> {

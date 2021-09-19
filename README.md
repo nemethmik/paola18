@@ -64,6 +64,9 @@ In this episode the capability of lit-plugin is demonstrated.
         - Test if attributes/properties are supported by lit-plugin since it detects @property decorators.
     - Show the documentation of lit-plugin where it mentiones JSDoc @fires in the no-unknown-event section
 
+- When there is any chance that an event handler is calling alert(), which would block the UI refresh cycle, before dispatching an event call `await new Promise((r) => setTimeout(r, 0))`
+See [Asynchronously adding event listeners](https://lit.dev/docs/components/events/) in Lit documentation, why the need for this 0 timeout await.
+
 ### my-counter:
 ```typescript
 import { LitElement, html, TemplateResult} from "lit"
