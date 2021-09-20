@@ -1,15 +1,16 @@
 import {html, LitElement, TemplateResult} from "lit"
 import {customElement,state, query} from "lit/decorators.js"
 import "@ui5/webcomponents/dist/Table.js"
+//import UI5Table from "./ui5types/Table"
 import "@ui5/webcomponents/dist/TableColumn.js"
 import "@ui5/webcomponents/dist/Button"
 import "@ui5/webcomponents/dist/CheckBox"
+import UI5CheckBox from "./ui5types/CheckBox"
 import "@ui5/webcomponents/dist/TableRow.js"
 import "@ui5/webcomponents/dist/TableCell.js"
 import "@ui5/webcomponents/dist/BusyIndicator.js"
-//import UI5Table from "./ui5types/Table"
-import UI5CheckBox from "./ui5types/CheckBox"
 import UI5BusyIndicator from "./ui5types/BusyIndicator"
+
 type UI5PoppedColumns = [{
     index: number, 
     popinText: string, 

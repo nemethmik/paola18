@@ -7,11 +7,12 @@ import {TUI5DemoEventPayload} from "./my-ui5demo"
 import "./my-ui5products"
 import "@ui5/webcomponents/dist/Toast.js"
 import UI5Toast from "./ui5types/Toast"
+import "./my-vaadinpeople"
 
 const app = document.querySelector<HTMLDivElement>("#app")!
-render(html`<my-app page="UI5Products"></my-app>`,app)  
+render(html`<my-app page="VaadinPeople"></my-app>`,app)  
 
-type TPageType = "CounterDemo" | "UI5Demo" | "UI5Products"
+type TPageType = "CounterDemo" | "UI5Demo" | "UI5Products" | "VaadinPeople"
 @customElement("my-app")
 class App extends LitElement {
   @property() page:TPageType = "CounterDemo"
@@ -37,10 +38,11 @@ class App extends LitElement {
   }
   render(): TemplateResult {
     return html`
-      <h1>SAP UI5 Web Components Vite with Lit</h1>
+      <h1>Web Components Vite with Lit</h1>
       <button @click=${():void => {this.page = "CounterDemo"}}>Counter</button>
       <button @click=${():void => {this.page = "UI5Demo"}}>UI5 Demo</button>
       <button @click=${():void => {this.page = "UI5Products"}}>UI5 Products</button>
+      <button @click=${():void => {this.page = "VaadinPeople"}}>Vaadin People</button>
       <p>
         ${this.page === "CounterDemo" ? this.myCounterPage() : ""}
         ${this.page === "UI5Demo" ? html`
@@ -54,6 +56,8 @@ class App extends LitElement {
           </my-ui5demo>` : ""}
           ${this.page === "UI5Products" ? html`<my-ui5products 
             @populate=${({detail}):void=>this.toast(detail + " rows loaded")}></my-ui5products>` : ""}  
+          ${this.page === "VaadinPeople" ? html`<my-vaadinpeople
+            @populate=${({detail}):void=>this.toast(detail + " people loaded")}></my-vaadinpeople>` : ""}  
       </p>
       <ui5-toast>Basic Toast</ui5-toast>
       <a href="https://github.com/nemethmik/paola18" target="_blank">Paola18 Documentation</a>

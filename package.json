@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && copyfiles products.json dist",
+    "build": "tsc && vite build && copyfiles products.json people.json dist",
     "serve": "vite preview",
     "fix": "eslint src --fix",
     "servor": "npx servor dist index.html 8080 --browse --reload",
@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "@ui5/webcomponents": "^1.0.0-rc.15",
+    "@vaadin/vaadin-button": "^21.0.1",
+    "@vaadin/vaadin-grid": "^21.0.1",
     "lit": "^2.0.0-rc.4"
   }
 }
