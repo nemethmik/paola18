@@ -10,6 +10,9 @@ Lit Element Counter Sample App on [Azure](https://lively-field-057f5c603.azurest
 
 ## Part 5 - Getting Started with Vaadin Grid
 Vaadin Grid (even the non Pro version) seems, honestly, a lot more flexible than UI5 table; whatever way I love SAP UI5, Vaadin is in a different league: they use the state of the art Lit Element as base component for the entire library, and Vaadin Fusion is their bread-and-butter along with other products. 
+
+In the meantime I had a quick look at Microsoft Fast and the [data-grid component](https://www.fast.design/docs/components/data-grid), and this *data-grid* is disappointing, slightly more than regular HTML table. The FAST technology is brilliant, I can say that it is even more versatile than Lit-HTML and Lit Element, but without a decent data-grid it is totally irrelevant for my projects where a decent grid solution is required. FluentUI Web Componnet is nothing else that Fast Web Components with Fluent UI "design language" (fancy word for look-and-feel).
+
 A major concern with Vaadin web components, however, might be that they are always presented in the context of the entire Vaading system, which includes a Java Spring Boot server, Maven as project orchestration tool. On the other hand, the web components (brand named Vaadin Fusion) are designed to be independent elements that could be used in any application stack. 
 - To start experimenting with [Vaadin Fusion](https://vaadin.com/fusion) start on the [Fusion documentation page](https://vaadin.com/docs/latest/fusion/overview).
 The [Design System](https://vaadin.com/docs/latest/ds/overview) page shows the actual components; in the top right corner on this page [Web Components 22.0.0-alpha5](https://github.com/vaadin/web-components/tree/v22.0.0-alpha5) opens the [GitHub home of the project](https://github.com/vaadin/web-components).

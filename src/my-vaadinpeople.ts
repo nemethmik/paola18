@@ -1,5 +1,5 @@
 import { LitElement, html, TemplateResult} from "lit"
-import {customElement,property,query} from "lit/decorators.js"
+import {customElement,query} from "lit/decorators.js"
 import "@vaadin/vaadin-grid/vaadin-grid.js"
 import "@vaadin/vaadin-grid/vaadin-grid-selection-column.js"
 import "@vaadin/vaadin-grid/vaadin-grid-sort-column.js"
@@ -35,9 +35,8 @@ class WebPadawanGridExample extends LitElement {
             </ui5-busy-indicator>
         `
     }
-    override firstUpdated():void {
-        this.loadData()
-    }/**
+    override firstUpdated():void {this.loadData()}
+    /**
      * @fires WebPadawanGridExample#populate
      */
     async loadData(remote = true):Promise<void> {
