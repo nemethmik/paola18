@@ -11,7 +11,7 @@ import "./my-vaadinpeople"
 import "./my-fastdatagrid"
 
 const app = document.querySelector<HTMLDivElement>("#app")!
-render(html`<my-app page="VaadinPeople"></my-app>`,app)  
+render(html`<my-app page="UI5Products"></my-app>`,app)  
 
 type TPageType = "CounterDemo" | "UI5Demo" | "UI5Products" | "VaadinPeople" | "DataGridDemo"
 @customElement("my-app")

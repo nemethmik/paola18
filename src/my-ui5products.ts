@@ -1,4 +1,4 @@
-import {html, LitElement, TemplateResult} from "lit"
+import {html, css, LitElement, TemplateResult} from "lit"
 import {customElement,state, query} from "lit/decorators.js"
 import "@ui5/webcomponents/dist/Table.js"
 //import UI5Table from "./ui5types/Table"
@@ -33,7 +33,7 @@ type TProduct = {
 @customElement("my-ui5products")
 class ChristianP86 extends LitElement {
     static DEFAULTMINWIDTH = 600
-    static DEMODELAYFORDATALOAD = 2000
+    static DEMODELAYFORDATALOAD = 0 //2000
     static BUSYINDICATORDELAY = 1000
     // static PRODUCTSTABLE = "productsTable"
     //static POPINCHECKBOX = "cbpopin"
@@ -47,13 +47,36 @@ class ChristianP86 extends LitElement {
     //@state() poppedColumns:UI5PoppedColumns = []
     //colTxt(title:string):TemplateResult {return html`<span style="line-height: 1.4rem">${title}</span>`}
     colTxt(title:string):TemplateResult {return html`${title}`}
+    static styles = css`
+        header {display: flex; align-items: center; }
+    `
     render():TemplateResult {
         console.log(`ChristianP86.render: Number of products ${this.products.length} popin=${this.popin} additive=${this.additive} minWidth ${this.minWidth}`)
         // < id=${ChristianP86.PRODUCTSTABLE}
         return html`
         <ui5-busy-indicator size="Medium" text="Loading data ..." delay=${ChristianP86.BUSYINDICATORDELAY}>
             <div>
-                <div>
+                <header>
+                    <ui5-checkbox text="Pop In" ?checked=${this.popin} 
+                        @change=${(e:Event):void=>{
+                            // console.log("Popin Change",e)
+                            this.popin = (e.currentTarget as UI5CheckBox).checked
+                            //if(this.popin) this.minWidth = ChristianP86.DEFAULTMINWIDTH
+                        }}></ui5-checkbox>
+                    <ui5-checkbox text="Additive" ?checked=${this.additive} 
+                        @change=${(e:Event):void=>{
+                            this.additive = (e.currentTarget as UI5CheckBox).checked
+                        }}></ui5-checkbox>
+                    <ui5-label for="min-width" required show-colon>Min Width</ui5-label>
+                    <ui5-input id="min-width" value=${this.minWidth} type=Number maxlength=4
+                        @change=${(e:Event):void=>{
+                            const v = (e.currentTarget as HTMLInputElement).value
+                            this.minWidth = v ? parseInt(v) : 0
+                        }}></ui5-input>
+                    <ui5-button @click=${this.addData} design="Emphasized">Populate</ui5-button>
+                    <ui5-button @click=${this.clearData} design="Emphasized">Clear</ui5-button>
+                </header>
+                <main>
                     <ui5-table  no-data-text="No Data" show-no-data
                         mode="SingleSelect" .stickyColumnHeader=${true}
                         @popin-change=${(e:CustomEvent):void=>{
@@ -85,27 +108,7 @@ class ChristianP86 extends LitElement {
                             </ui5-table-row>
                         `)}
                     </ui5-table>
-                </div>
-                <div>
-                    <ui5-checkbox text="Pop In" ?checked=${this.popin} 
-                        @change=${(e:Event):void=>{
-                            // console.log("Popin Change",e)
-                            this.popin = (e.currentTarget as UI5CheckBox).checked
-                            //if(this.popin) this.minWidth = ChristianP86.DEFAULTMINWIDTH
-                        }}></ui5-checkbox>
-                    <ui5-checkbox text="Additive" ?checked=${this.additive} 
-                        @change=${(e:Event):void=>{
-                            this.additive = (e.currentTarget as UI5CheckBox).checked
-                        }}></ui5-checkbox>
-                    <ui5-label for="min-width" required show-colon>Min Width</ui5-label>
-                    <ui5-input id="min-width" value=${this.minWidth} type=Number maxlength=4
-                        @change=${(e:Event):void=>{
-                            const v = (e.currentTarget as HTMLInputElement).value
-                            this.minWidth = v ? parseInt(v) : 0
-                        }}></ui5-input>
-                    <ui5-button @click=${this.addData} design="Emphasized">Populate</ui5-button>
-                    <ui5-button @click=${this.clearData} design="Emphasized">Clear</ui5-button>
-                </div>
+                </main>
             </div>
         </ui5-busy-indicator>
         `
@@ -116,7 +119,7 @@ class ChristianP86 extends LitElement {
             await new Promise((r) => setTimeout(r, ChristianP86.DEMODELAYFORDATALOAD))
             const response = await fetch("./products.json")
             const data = await response.json()
-            if(this.additive) this.products = [...this.products, ...data]
+            if(this.additive) this.products = [...this.products, ...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data]
             else this.products = data
             /*
             // This was the original brutally unsafe, fragile, imperative implementation, 
